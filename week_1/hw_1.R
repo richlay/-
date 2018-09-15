@@ -21,6 +21,8 @@ str(iris)
 # ㄏノsummary() 琩iris痹瓃┦参璸摸戈阀瓃
 summary(iris)
 
+
+
 ########################################################### Task 2
 
 # ㄏノfor loop 猭
@@ -34,22 +36,28 @@ for(i in 1:9){
   j <- 1
 }
 
+
+
 ########################################################### Task 3
 
 # ㄏノsample(), 玻10ざ10~100俱计跑计 nums
 x <- c(10:100)
-sample(x, size=10, replace = FALSE, prob = NULL )
+nums <- sample(x, size=10, replace = FALSE, prob = NULL )
 
 # 琩nums
-
+nums
 
 # 1.ㄏノfor loop の if-else50案计矗ボ("案计50": 计value)
 # 2.疭砏玥璝计66玥矗ボ("び66666666666")いゎ癹伴
-
-
-
-
-
+for (x in 1:10) {
+  if(nums[x]==66){
+    print("び66666666666") 
+    break
+  }
+  if(nums[x]%%2==0 & nums[x]>50){
+    print(paste("案计50:", nums[x]))
+  }
+}
 
 
 
