@@ -15,7 +15,9 @@
 - summary()
 
 <p>
+  
 ### Others
+
 - for
 
 - sample()
