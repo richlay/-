@@ -14,8 +14,8 @@
 ### 查看資料庫概述
 - summary()
 
-
-###Others
+\br
+### Others
 - for
 
 - sample()
