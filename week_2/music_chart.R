@@ -1,0 +1,6 @@
+library(rvest)
+html <- read_html("https://kma.kkbox.com/charts/daily/song?terr=tw&lang=tc&cate=390")
+nods <- html_nodes(html, ".charts-list-desc")
+songs <- html_text(nods)
+df <- data.frame(songs)
+View(df)
