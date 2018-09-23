@@ -2,5 +2,5 @@
 * [week_1](https://github.com/richlay/Rlanguage/tree/master/week_1)
   - [hw_1](https://github.com/richlay/Rlanguage/blob/master/week_1/hw_1.R)
   - [hw_2](https://github.com/richlay/Rlanguage/blob/master/week_1/hw_2.R)
-* week_2
-  - hw_1
+* [week_2](https://github.com/richlay/Rlanguage/blob/master/week_2)
+  - [hw_1](https://github.com/richlay/Rlanguage/blob/master/week_2/hw_1.R)
