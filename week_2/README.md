@@ -6,7 +6,7 @@
 - scraping with different librarys(httr, rvest)
 - numerous debugging
 - learn Markdown
-### hw_1
+### [Homework](https://github.com/richlay/Rlanguage/blob/master/week_2/hw)
 - 爬imdb的前25高分電影
 
 
