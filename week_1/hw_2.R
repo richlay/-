@@ -7,7 +7,6 @@
 # some constants
 endofgame <- F
 guess.num <- 1
-already.a <- c(F, F, F, F)
 playround.count <- 0
 # generate random four nums
 random.four <- sample(0:9, 4, replace = T, prob = NULL)
@@ -15,10 +14,12 @@ random.four <- sample(0:9, 4, replace = T, prob = NULL)
 while (endofgame==F) {
   a <- 0
   b <- 0
-  # reset checking number
+  already.a <- c(F, F, F, F)
+  # reset checking number, which is for detecting 'b'
   checking.num <- random.four
   # player input four digit
-  guess <- readline(prompt = "請輸入四個數字")
+  guess <- readline(prompt = "Please enter four numbers. ")
+  
   # get individual nums
   for (i in 1:4) {
     guess.num[i] <- as.integer(substr(guess, i, i))
@@ -26,14 +27,19 @@ while (endofgame==F) {
     if (guess.num[i]==random.four[i]){
       a <- a+1
       already.a[i] <- T
+      # make checking number unavailable for 'b' detect, which i use '10' to do so
+      checking.num[i] <- 10
     }
   }
   
+  # find b
   for (j in 1:4) {
-    if (already.a[j]==F){
+    # see if the number is 'a' correct
+    if (already.a[j]==F){ 
       for (k in 1:4) {
         if (guess.num[j]==checking.num[k]){
           b <- b+1
+          # make the number unavailable for another b
           checking.num[k] <- 10
           break
         }
