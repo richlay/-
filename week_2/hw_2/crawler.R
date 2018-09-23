@@ -1,0 +1,6 @@
+library(rvest)
+html <- read_html("https://www.imdb.com/search/title?groups=top_250&sort=user_rating&page=1&ref_=adv_nxt")
+nods <- html_nodes(html, ".lister-item-header")
+Movies <- html_text(nods)
+df <- data.frame(Movies)
+View(df)
