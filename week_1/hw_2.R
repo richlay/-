@@ -13,29 +13,27 @@ random.four <- sample(0:9, 4, replace = T, prob = NULL)
 
 # check if entered numbers are legit
 legit <- function(fournums){
-  if (is.numeric(fournums)==F){
-    print("Please enter four NUMBERS!")
-    return(F)
-  }else if(length(fournums)>4){
-    print("Please enter FOUR numbers!")
-    return(F)
-  }else{
-    return(T)
-    }
+  for (r in 1:4) {
+    as.numeric()
+  }
 }
 
 while (endofgame==F) {
+  #reset constants
   a <- 0
   b <- 0
   already.a <- c(F, F, F, F)
+  
   # reset checking number, which is for detecting 'b'
   checking.num <- random.four
+  
   # player input four digit
   enter.correct <- F
   while (enter.correct==F){
   guess <- readline(prompt = "Please enter four numbers. ")
-  enter.correct <- legit(as.numeric(guess))
+  legit(guess)
   }
+  
   # get individual nums
   for (i in 1:4) {
     guess.num[i] <- as.integer(substr(guess, i, i))
@@ -63,6 +61,7 @@ while (endofgame==F) {
     }
   }
   
+  # finally
   if (a==4){
     print(paste("Correct! You have tried ",playround.count," times."))
     endofgame <- T
