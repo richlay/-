@@ -4,4 +4,3 @@
   - [hw_2(1A2Bgame)](https://github.com/richlay/Rlanguage/blob/master/week_1/hw_2.R)
 * [week_2](https://github.com/richlay/Rlanguage/blob/master/week_2)
   - [hw](https://github.com/richlay/Rlanguage/blob/master/week_2/hw)
-  - [html](https://github.com/richlay/Rlanguage/blob/master/week_2/hw/crawler.html)
