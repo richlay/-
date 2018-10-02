@@ -1,0 +1,49 @@
+---
+title: "Insurance Data"
+date: "2018/10/02"
+author: "賴昱堯"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+</br>
+
+## 讀取資料
+
+```{r}
+setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_3/hw")
+insurance.data = read.csv("insurance.csv")
+
+```
+
+## 資料的基本結構
+
+```{r}
+head(insurance.data)
+
+```
+
+## 資料的數據統計
+
+```{r}
+summary(insurance.data)
+
+```
+
+## 引用ggplot 資料庫
+
+```{r}
+library(ggplot2)
+
+```
+
+## 不同年紀的男女的BMI
+
+```{r}
+my.plot.point = ggplot(insurance.data, aes(age, bmi, colour=sex)) + geom_point()
+my.plot.point
+
+```
+
