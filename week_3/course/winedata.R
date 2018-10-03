@@ -1,9 +1,8 @@
 setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_3/course")
-wine.data = read.csv("Book1.csv")
+wine.data = read.csv("wine100.csv")
 country = wine.data[wine.data$country=="Italy",]
-require(datasets)
-plot(x=country$province,
+plot(x=country$X,
      y=country$price,
-     main="country to points",
-     xlab="Italy",
+     main="Italy",
+     xlab="no.",
      ylab="price")
