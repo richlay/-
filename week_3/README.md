@@ -7,7 +7,7 @@
 - learn ggplot
 - practice the use of different function
 - numerous debugging
-- learn Markdown syntax
+- learn rMarkdown syntax
 ### [Homework](https://github.com/richlay/Rlanguage/tree/master/week_3/hw)
 - downloaded [Medical Cost Personal Datasets](https://www.kaggle.com/mirichoi0218/insurance) from Kaggle
 - analyse data using different charts
