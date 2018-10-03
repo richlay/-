@@ -11,6 +11,6 @@
 ### [Homework](https://github.com/richlay/Rlanguage/tree/master/week_3/hw)
 - downloaded [Medical Cost Personal Datasets](https://www.kaggle.com/mirichoi0218/insurance) from Kaggle
 - analyse data using different charts
-  -- [.rmd](https://github.com/richlay/Rlanguage/blob/master/week_3/hw/insurancedata.Rmd)
-  -- [.html](https://richlay.github.io/Rlanguage/week_3/hw/insurancedata.html)
+  - [rmd](https://github.com/richlay/Rlanguage/blob/master/week_3/hw/insurancedata.Rmd)
+  - [html](https://richlay.github.io/Rlanguage/week_3/hw/insurancedata.html)
 
