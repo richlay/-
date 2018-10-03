@@ -39,11 +39,34 @@ library(ggplot2)
 
 ```
 
+## BMI分布狀況
+
+```{r}
+ggplot(insurance.data, aes(bmi)) +
+geom_bar(fill = "blue", colour = "black")
+
+```
+
+## 收費狀況
+```{r}
+ggplot(insurance.data, aes(charges)) +
+geom_histogram(
+    bins = 60, 
+    fill = "steelblue"
+)
+
+```
+
 ## 不同年紀的男女的BMI
 
 ```{r}
-my.plot.point = ggplot(insurance.data, aes(age, bmi, colour=sex)) + geom_point()
-my.plot.point
+ggplot(insurance.data, aes(age, bmi, colour=sex)) + geom_point()
 
+```
+
+# 性別 vs bmi
+```{r}
+ggplot(insurance.data, aes(sex, charges)) +
+geom_boxplot()
 ```
 
