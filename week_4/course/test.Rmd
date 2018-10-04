@@ -1,12 +1,25 @@
+---
+title: "Untitled"
+author: "賴昱堯"
+date: "2018年10月4日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
 setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_4/course")
 lyrics = readLines("lyrics.txt")
-lyrics
 library("tm")
 library("SnowballC")
 library("wordcloud")
 library("RColorBrewer")
 docs <- Corpus(VectorSource(lyrics))
-inspect(docs)
 
 
 # Convert the text to lower case
@@ -29,13 +42,8 @@ dtm <- TermDocumentMatrix(docs)
 m <- as.matrix(dtm)
 v <- sort(rowSums(m),decreasing=TRUE)
 d <- data.frame(word = names(v),freq=v)
-View(d)
-
 set.seed(1234)
 wordcloud(words = d$word, freq = d$freq, min.freq = 1,
           max.words=200, random.order=FALSE, rot.per=0.35, 
           colors=brewer.pal(8, "Dark2"))
-
-barplot(d[1:10,]$freq, las = 2, names.arg = d[1:10,]$word,
-        col ="lightblue", main ="Most frequent words",
-        ylab = "Word frequencies")
+```
