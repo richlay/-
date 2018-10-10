@@ -11,6 +11,6 @@
 ### [Homework](https://github.com/richlay/Rlanguage/tree/master/week_4/hw)
 - find all songs of Beatles and turn them into .txt by hand
 - turn words used in their lyrics into wordcloud and chart
-  - [rmd](https://github.com/richlay/Rlanguage/blob/master/week_3/hw/insurancedata.Rmd)
-  - [html](https://richlay.github.io/Rlanguage/week_3/hw/insurancedata.html)
+  - [rmd](https://github.com/richlay/Rlanguage/blob/master/week_4/hw/beatles.Rmd)
+  - [html](https://richlay.github.io/Rlanguage/week_4/hw/beatles.html)
 
