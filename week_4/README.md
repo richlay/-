@@ -1,7 +1,7 @@
 # CONTENT
 ### [當週課堂](https://github.com/richlay/Rlanguage/tree/master/week_4/course)
 - practice text mining syntax
-- it's important to not forget '**s**' when using '**readLines**' dunction or else you can only extract one line !! 
+- it's important to not forget '**s**' when using '**readLines**' function or else you can only extract one line !! 
 
 ### 回家進度
 - learn wordcloud
