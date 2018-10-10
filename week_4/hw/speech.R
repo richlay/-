@@ -1,24 +1,27 @@
-setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_4/course")
-lyrics = readLines("lyrics.txt")
+setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_4/hw")
+speech = readLines("17.txt")
 library("tm")
+library("tmcn")
+library("rJava")
+library("Rwordseg")
 library("SnowballC")
 library("wordcloud")
 library("RColorBrewer")
-docs <- Corpus(VectorSource(lyrics))
+docs <- Corpus(VectorSource(speech))
 
-# Convert the text to lower case
-docs <- tm_map(docs, content_transformer(tolower))
 # Remove numbers
 docs <- tm_map(docs, removeNumbers)
-# Remove english common stopwords
-docs <- tm_map(docs, removeWords, stopwords("english"))
-# Remove your own stop word
-# specify your stopwords as a character vector
-docs <- tm_map(docs, removeWords, c("lennon", "mcCartney", "(", ")")) 
 # Remove punctuations
 docs <- tm_map(docs, removePunctuation)
-# Eliminate extra white spaces
-docs <- tm_map(docs, stripWhitespace)
+
+docs <- tm_map(docs[1:100], segmentCN, nature = TRUE)
+docs <- tm_map(docs, function(sentence) {
+  noun <- lapply(sentence, function(w) {
+    w[names(w) == "n"]
+  })
+  unlist(noun)
+})
+docs <- Corpus(VectorSource(docs))
 # Text stemming
 docs <- tm_map(docs, stemDocument)
 
