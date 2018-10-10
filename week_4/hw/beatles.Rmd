@@ -1,0 +1,89 @@
+---
+title: "Beatles' Songs"
+author: "賴昱堯"
+date: "2018年10月10日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+***
+
+## 目的
+
+Beatles 是當今被很多人認為最成功的樂團之一，所以我想根據他們的歌詞內容對他們的曲風做一定的認識。  
+因為我找到的歌詞是[pdf](http://www.idph.com.br/conteudos/ebooks/beatles.pdf)，所以我以手動的方式將內容複製存成[txt](https://github.com/richlay/Rlanguage/blob/master/week_4/hw/lyrics1.txt)
+
+
+```{r warning=FALSE, message=FALSE}
+setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_4/hw")
+lyrics = readLines("lyrics1.txt")
+library("tm")
+library("SnowballC")
+library("wordcloud")
+library("RColorBrewer")
+docs <- Corpus(VectorSource(lyrics))
+```
+
+## 對內容作資料整理  
+
+大寫轉小寫、去除數字、去除慣用英文字、去除自訂不必要的字，去除標點符號...
+
+```{r warning=FALSE}
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, "'", x))
+docs <- tm_map(docs, toSpace, "??")
+# Convert the text to lower case
+docs <- tm_map(docs, content_transformer(tolower))
+# Remove numbers
+docs <- tm_map(docs, removeNumbers)
+# Remove english common stopwords
+docs <- tm_map(docs, removeWords, stopwords("english"))
+# Remove your own stop word
+# specify your stopwords as a character vector
+docs <- tm_map(docs, removeWords, c("lennonmccrtney","lennon", "mcCartney", "(", ")")) 
+# Remove punctuations
+docs <- tm_map(docs, removePunctuation)
+# Eliminate extra white spaces
+docs <- tm_map(docs, stripWhitespace)
+# Text stemming
+docs <- tm_map(docs, stemDocument)
+```
+
+## 向量化單字
+
+```{r warning=FALSE}
+dtm <- TermDocumentMatrix(docs)
+m <- as.matrix(dtm)
+v <- sort(rowSums(m),decreasing=TRUE)
+d <- data.frame(word = names(v),freq=v)
+```
+
+## 文字雲
+
+```{r}
+set.seed(1234)
+wordcloud(words = d$word, freq = d$freq, min.freq = 1,
+          max.words=200, random.order=FALSE, rot.per=0.35, 
+          colors=brewer.pal(8, "Dark2"))
+```
+
+## 條狀圖
+
+```{r}
+barplot(d[1:10,]$freq, las = 2, names.arg = d[1:10,]$word,
+        col ="lightblue", main ="Most frequent words",
+        ylab = "Word frequencies")
+```
+
+***
+
+## 結論
+
+由文字雲可以發現，Beatles的歌詞多出現**很簡單**的字，像是you, girl, know, love等，而幾乎沒有任何艱澀難懂的字，~~根本是小學生都會的單字~~，簡單卻真摯的歌詞，猜測這是他們會受這麼多人喜愛的原因之一。
+
+
+## Bug
+
+文字雲的出現的字彚中，頻頻出現**e2**，猜測是歌詞中出現的不規則標點符號所致。

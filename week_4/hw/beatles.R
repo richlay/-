@@ -1,11 +1,13 @@
-setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_4/course")
-lyrics = readLines("lyrics.txt")
+setwd("C:/Users/user/Documents/GitHub/Rlanguage/week_4/hw")
+lyrics = readLines("lyrics1.txt")
 library("tm")
 library("SnowballC")
 library("wordcloud")
 library("RColorBrewer")
 docs <- Corpus(VectorSource(lyrics))
 
+toSpace <- content_transformer(function (x , pattern ) gsub(pattern, "'", x))
+docs <- tm_map(docs, toSpace, "??")
 # Convert the text to lower case
 docs <- tm_map(docs, content_transformer(tolower))
 # Remove numbers
