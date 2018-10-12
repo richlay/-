@@ -1,0 +1,40 @@
+---
+title: "臺灣國家公園分布"
+author: "賴昱堯"
+date: "2018年10月10日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 前言
+
+本來的想法是從wiki上抓個國家公園的座標，但遇到兩個問題  
+1. 有些公園有提供座標，有些則沒有  
+2. wiki提供的座標形式是60進位，但leaflet接受的是10進位  
+所以在種種麻煩下，我決定用手動的方式抓座標，然後把蒐集來的資料存成[csv]()，再做匯入。
+***
+
+## 用google map手動抓座標
+
+本身google map 似乎不提供座標查詢，但似乎座標會顯示在網址上...
+
+
+```{r}
+library(leaflet)
+content <- read.csv("park.csv")
+
+x <- paste("名稱： ", content$park,"<br>","成立時間： ", content$date)
+ 
+m <- leaflet() %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=content$long, lat=content$lat,
+             popup=x)
+
+m  # Print the map
+```
+
+## 結論
+台灣到處都有國家公園，很棒。  ~~話說美國那麼大也總共才60個~~
