@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 用google map手動抓座標
 
 本身google map 似乎不提供座標查詢，但似乎座標會顯示在網址上...  
-![caption](https://github.com/richlay/Rlanguage/blob/master/week_4/hw/national%20park/scr.JPG)
+
 ***
 ```{r}
 library(leaflet)
