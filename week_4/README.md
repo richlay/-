@@ -16,6 +16,6 @@
   
 ### [Bonus](https://github.com/richlay/Rlanguage/tree/master/week_4/hw/national%20park)
 - make a map of to locate all national parks in Taiwan
-  - [bonus_rmd](https://github.com/richlay/Rlanguage/tree/master/week_4/hw/national%20park/national_park.rmd)
-  - [bonus_html](https://github.com/richlay/Rlanguage/tree/master/week_4/hw/national%20park/national_park.html)
+  - [bonus_rmd](https://github.com/richlay/Rlanguage/tree/master/week_4/hw/national%20park/national_park.Rmd)
+  - [bonus_html](https://richlay.github.io/Rlanguage/week_4/hw/national%20park/national_park.html)
 
