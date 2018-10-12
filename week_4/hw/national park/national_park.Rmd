@@ -15,6 +15,7 @@ knitr::opts_chunk$set(echo = TRUE)
 1. 有些公園有提供座標，有些則沒有  
 2. wiki提供的座標形式是60進位，但leaflet接受的是10進位  
 所以在種種麻煩下，我決定用手動的方式抓座標，然後把蒐集來的資料存成[csv](https://github.com/richlay/Rlanguage/blob/master/week_4/hw/national%20park/park.csv)，再做匯入。
+
 ***
 
 ## 用google map手動抓座標
