@@ -38,12 +38,21 @@ for (y in 91:107) {
   assign(nam, cutter[readLines(paste(y, '.txt' , sep = ""), encoding = "UTF-8")]) 
   
 }
-tableWord <- count(speech100) #Equivalent to as.data.frame(table(x))
+cat("speech107")
+tableWord <- count(speech107) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech107)))
 
-wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech100)))
+cat("speech106")
+tableWord <- count(speech106) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech106)))
 
+cat("speech105")
+tableWord <- count(speech105) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech105)))
 
-
+cat("speech104")
+tableWord <- count(speech104) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech104)))
 ```
 
 ```{r warning=FALSE}
