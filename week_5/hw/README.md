@@ -1,6 +1,6 @@
 # CONTENT
 ### 當週課堂
-- learn about the concepts about **Exploratory Data Analysis(EDA)** and **TF-IDF **
+- learn about the concepts about **Exploratory Data Analysis(EDA)** and **TF-IDF**
 - think about the topics I would like to explore
 
 ### 回家進度
