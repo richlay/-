@@ -1,0 +1,57 @@
+---
+title: "歷年國慶演講"
+author: "賴昱堯"
+date: "2018年10月17日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 前言
+
+國慶日剛過，每年的國慶演講總是一大重點，因為從演講內容可以看出當年的國家狀況，包含經濟、政治、社會議題等；所以，我試圖從講稿的文字裡，分析出歷年來國家的發展狀況。
+
+***
+
+## 載入資料庫
+
+```{r message=FALSE}
+library(jiebaR)
+library(wordcloud)
+library(plyr)
+
+```
+
+## 載入演講稿
+
+```{r warning=FALSE}
+setwd("~/GitHub/Rlanguage/week_5/hw/txt")
+
+#initialize jiebaR workers
+cutter <- worker(stop_word = "停用詞.txt") 
+
+# load speeches & cut words
+for (y in 91:107) {
+  nam <- paste("speech", y, sep = "")
+  assign(nam, cutter[readLines(paste(y, '.txt' , sep = ""), encoding = "UTF-8")]) 
+  
+}
+
+
+
+```
+
+```{r warning=FALSE}
+k <- function(i){
+tableWord <- count(paste("speech", i, sep = "")) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(paste("speech", i, sep = ""))))
+}
+
+for (x in 91:107) {
+  k(x)
+}
+
+
+```
