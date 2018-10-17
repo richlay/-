@@ -38,6 +38,9 @@ for (y in 91:107) {
   assign(nam, cutter[readLines(paste(y, '.txt' , sep = ""), encoding = "UTF-8")]) 
   
 }
+tableWord <- count(speech100) #Equivalent to as.data.frame(table(x))
+
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech100)))
 
 
 
