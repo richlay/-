@@ -33,8 +33,8 @@ ui <- fluidPage(
 
          selectInput(inputId = "value",
                      label = "Select value:",
-                     choices = batting[1, 6:29],
-                     selected = batting[1, 19]
+                     choices = names(batting[6:29]),
+                     selected = names(batting[19])
          )
       ),
       
@@ -53,10 +53,10 @@ server <- function(input, output) {
    selected_team <- reactive({filter(batting, Tm==input$team)})
 
    output$barPlot <- renderPlot({
-     ggplot(data = selected_team(), mapping = aes_string(x ="Name", y = "BA"))+
+     ggplot(data = selected_team(), mapping = aes_string(x ="Name", y = input$value))+
        geom_bar(stat = "identity")+
        coord_flip()+
-       ylab("value")+
+       ylab(input$value)+
        xlab("Name")
    })
 }
