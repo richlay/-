@@ -8,6 +8,12 @@
 #
 
 library(shiny)
+library(ggplot2)
+library(tidyverse)
+library(readr)
+batting <- read_csv("batting.csv")
+standings <- read_csv("standings.csv")
+
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -17,37 +23,46 @@ ui <- fluidPage(
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
+      position = "right",
       sidebarPanel(
-         sliderInput("bins",
-                     "Number of bins:",
-                     min = 1,
-                     max = 50,
-                     value = 30)
+         helpText("See the selected bar chart of selected team."),
+         selectInput(inputId = "team",
+                     label = "Select team:",
+                     choices = standings$Tm,
+                     ),
+
+         selectInput(inputId = "value",
+                     label = "Select value:",
+                     choices = batting[1, 6:29],
+                     selected = batting[1, 19]
+         )
       ),
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+         plotOutput("barPlot")
       )
    )
 )
 
+
+
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-   
-   output$distPlot <- renderPlot({
-     library(ggplot2)
-     library(tidyverse)
-     library(readr)
-     batting <- read_csv("batting.csv")
-     bos <- filter(batting, Tm=="BOS")
-     ggplot(data = bos, mapping = aes(x = Name, y = BA ))+
+
+   selected_team <- reactive({filter(batting, Tm==input$team)})
+
+   output$barPlot <- renderPlot({
+     ggplot(data = selected_team(), mapping = aes_string(x ="Name", y = "BA"))+
        geom_bar(stat = "identity")+
        coord_flip()+
-       ylab("Ba")+
+       ylab("value")+
        xlab("Name")
    })
 }
+
+
+
 
 # Run the application 
 shinyApp(ui = ui, server = server)

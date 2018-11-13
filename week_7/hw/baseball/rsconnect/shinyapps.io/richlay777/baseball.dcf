@@ -1,0 +1,12 @@
+name: baseball
+title: baseball
+username:
+account: richlay777
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 565447
+bundleId: 1695943
+url: https://richlay777.shinyapps.io/baseball/
+when: 1542025862.6703
+asMultiple: FALSE
+asStatic: FALSE
