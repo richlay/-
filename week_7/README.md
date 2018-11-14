@@ -10,7 +10,7 @@
 - numerous coding
 - numerous debugging
 - turn r into responsive shiny
-  - [rmd](https://github.com/richlay/Rlanguage/blob/master/week_4/hw/beatles.Rmd)
+  - [rmd](https://github.com/richlay/Rlanguage/blob/master/week_7/hw/baseball.Rmd)
   - [shiny](https://richlay777.shinyapps.io/baseball/)
   
 
