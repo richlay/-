@@ -5,8 +5,8 @@ account: richlay777
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 565447
-bundleId: 1700364
+bundleId: 1700709
 url: https://richlay777.shinyapps.io/baseball/
-when: 1542199539.44056
+when: 1542208805.39427
 asMultiple: FALSE
 asStatic: FALSE
