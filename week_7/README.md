@@ -11,7 +11,7 @@
 - numerous debugging
 - turn r into responsive shiny
   - [rmd](https://github.com/richlay/Rlanguage/blob/master/week_7/hw/baseball.Rmd)
-  - [html](https://github.com/richlay/Rlanguage/blob/master/week_7/hw/baseball.html)
+  - [html](https://richlay.github.io/Rlanguage/week_7/hw/baseball.html)
   - [shiny](https://richlay777.shinyapps.io/baseball/)
   
 
