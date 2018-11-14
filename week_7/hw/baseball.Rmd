@@ -1,0 +1,69 @@
+---
+title: "MLB Postseason Analysis"
+author: "賴昱堯"
+date: "2018年11月14日"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 前言
+
+美國職棒季後賽前不久才結束，由萬眾所矚的波士頓紅襪隊奪下世界冠軍，然而歷年來的世界冠軍並不都是一開始就被看好，因此我很好奇是否能夠從季賽中選手、球隊的表現看出一些端倪，故我抓了2018年全部球員的數據做分析。
+
+***
+
+## 載入資料庫
+
+```{r message=FALSE}
+library(jiebaR)
+library(wordcloud)
+library(plyr)
+
+```
+
+## 載入演講稿
+
+```{r warning=FALSE}
+setwd("~/GitHub/Rlanguage/week_5/hw/txt")
+
+#initialize jiebaR workers
+cutter <- worker(stop_word = "停用詞.txt") 
+
+# load speeches & cut words
+for (y in 91:107) {
+  nam <- paste("speech", y, sep = "")
+  assign(nam, cutter[readLines(paste(y, '.txt' , sep = ""), encoding = "UTF-8")]) 
+  
+}
+cat("speech107")
+tableWord <- count(speech107) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech107)))
+
+cat("speech106")
+tableWord <- count(speech106) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech106)))
+
+cat("speech105")
+tableWord <- count(speech105) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech105)))
+
+cat("speech104")
+tableWord <- count(speech104) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech104)))
+```
+
+```{r warning=FALSE}
+k <- function(i){
+tableWord <- count(paste("speech", i, sep = "")) #Equivalent to as.data.frame(table(x))
+wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(paste("speech", i, sep = ""))))
+}
+
+for (x in 91:107) {
+  k(x)
+}
+
+
+```
