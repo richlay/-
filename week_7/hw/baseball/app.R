@@ -19,7 +19,7 @@ standings <- read_csv("standings.csv")
 ui <- fluidPage(
    
    # Application title
-   titlePanel("Baseball Postseason Analysis"),
+   titlePanel("MLB Postseason Analysis"),
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
@@ -35,7 +35,8 @@ ui <- fluidPage(
                      label = "Select value:",
                      choices = names(batting[6:29]),
                      selected = names(batting[19])
-         )
+                     ),
+         tags$a(href="https://richlay.github.io/Rlanguage/week_7/hw/note.html", "Abbreviation?")
       ),
       
       # Show a plot of the generated distribution
