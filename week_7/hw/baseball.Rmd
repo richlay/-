@@ -18,52 +18,36 @@ knitr::opts_chunk$set(echo = TRUE)
 ## 載入資料庫
 
 ```{r message=FALSE}
-library(jiebaR)
-library(wordcloud)
-library(plyr)
+library(tidyverse)
+library(readr)
+library(ggplot2)
+
 
 ```
 
-## 載入演講稿
+## team vs value
 
-```{r warning=FALSE}
-setwd("~/GitHub/Rlanguage/week_5/hw/txt")
+```{r message=FALSE, warning=FALSE}
+setwd("~/GitHub/Rlanguage/week_7/hw/baseball")
 
-#initialize jiebaR workers
-cutter <- worker(stop_word = "停用詞.txt") 
+standings <- read_csv("standings.csv")
+ggplot(data = standings, mapping = aes(x = Tm, y = W, fill = Lg ))+
+  geom_bar(stat = "identity")+
+  coord_flip()+
+  ylab("Wins")+
+  xlab("Teams")
 
-# load speeches & cut words
-for (y in 91:107) {
-  nam <- paste("speech", y, sep = "")
-  assign(nam, cutter[readLines(paste(y, '.txt' , sep = ""), encoding = "UTF-8")]) 
-  
-}
-cat("speech107")
-tableWord <- count(speech107) #Equivalent to as.data.frame(table(x))
-wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech107)))
-
-cat("speech106")
-tableWord <- count(speech106) #Equivalent to as.data.frame(table(x))
-wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech106)))
-
-cat("speech105")
-tableWord <- count(speech105) #Equivalent to as.data.frame(table(x))
-wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech105)))
-
-cat("speech104")
-tableWord <- count(speech104) #Equivalent to as.data.frame(table(x))
-wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(speech104)))
+batting <- read_csv("batting.csv")
+bos <- filter(batting, Tm=="BOS")
+ggplot(data = bos, mapping = aes(x = Name, y = BA ))+
+  geom_bar(stat = "identity")+
+  coord_flip()+
+  ylab("Ba")+
+  xlab("Name")
 ```
 
 ```{r warning=FALSE}
-k <- function(i){
-tableWord <- count(paste("speech", i, sep = "")) #Equivalent to as.data.frame(table(x))
-wordcloud(tableWord[,1],tableWord[,2],min.freq=2,random.order=F,rot.per = F,colors= rainbow(length(paste("speech", i, sep = ""))))
-}
 
-for (x in 91:107) {
-  k(x)
-}
 
 
 ```
