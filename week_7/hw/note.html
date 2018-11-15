@@ -128,8 +128,9 @@ $(document).ready(function () {
 </div>
 
 
-<div id="section" class="section level2">
-<h2>–</h2>
+<hr />
+<div id="batter" class="section level2">
+<h2>Batter</h2>
 <p>G – Games Played or Pitched</p>
 <p>PA – Plate Appearances When available, we use actual plate appearances from play-by-play game accounts Otherwise estimated using AB + BB + HBP + SF + SH, which excludes catcher interferences. When this color click for a summary of each PA.</p>
 <p>AB – At Bats</p>
@@ -155,6 +156,81 @@ $(document).ready(function () {
 <p>SF – Sacrifice Flies First tracked in 1954.</p>
 <p>IBB – Intentional Bases on Balls First tracked in 1955.</p>
 <hr />
+</div>
+<div id="pitcher" class="section level2">
+<h2>Pitcher</h2>
+<p>P/G – Pitchers Used Per Game</p>
+<p>PAge – Pitchers’ average age Weighted by 3*GS + G + SV</p>
+<p>RA/G – Runs Allowed Per Game</p>
+<p>W – Wins</p>
+<p>L – Losses</p>
+<p>W-L% – Win-Loss Percentage W / (W + L) For players, leaders need one decision for every ten team games. For managers, minimum to qualify for leading is 320 games.</p>
+<p>ERA – 9 * ER / IP For recent years, leaders need 1 IP per team game played. Bold indicates lowest ERA using current stats Gold means awarded ERA title at end of year.</p>
+<p>G – Games Played or Pitched</p>
+<p>GS – Games Started</p>
+<p>GF – Games Finished</p>
+<p>CG – Complete Game</p>
+<p>tSho – Shutouts by a team No runs allowed in a game by one or more pitchers.</p>
+<p>cSho – Shutouts No runs allowed and a complete game.</p>
+<p>SV – Saves</p>
+<p>IP – Innings Pitched</p>
+<p>H – Hits/Hits Allowed</p>
+<p>R – Runs Scored/Allowed</p>
+<p>ER – Earned Runs Allowed</p>
+<p>HR – Home Runs Hit/Allowed</p>
+<p>BB – Bases on Balls/Walks</p>
+<p>IBB – Intentional Bases on Balls First tracked in 1955.</p>
+<p>SO – Strikeouts</p>
+<p>HBP – Times Hit by a Pitch.</p>
+<p>BK – Balks</p>
+<p>WP – Wild Pitches</p>
+<p>BF – Batters Faced</p>
+<p>ERA+ – ERA+ 100*[lgERA/ERA] Adjusted to the player’s ballpark(s).</p>
+<p>FIP – Fielding Independent Pitching this stat measures a pitcher’s effectiveness at preventing HR, BB, HBP and causing SO (13<em>HR + 3</em>(BB+HBP) - 2*SO)/IP + Constantlg The constant is set so that each season MLB average FIP is the same as the MLB avg ERA</p>
+<p>WHIP – (BB + H)/IP For recent years, leaders need 1 IP per team game played</p>
+<p>H9 – 9 x H / IP For recent years, leaders need 1 IP per team game played</p>
+<p>HR9 – 9 x HR / IP For recent years, leaders need 1 IP per team game played</p>
+<p>BB9 – 9 x BB / IP For recent years, leaders need 1 IP per team game played</p>
+<p>SO9 – 9 x SO / IP For recent years, leaders need 1 IP per team game played</p>
+<p>SO/W – SO/W or SO/BB For recent years, pitching leaders need 1 IP per team game played. No batting leaders computed.</p>
+<p>LOB – Runners Left On Base</p>
+<hr />
+</div>
+<div id="fielding" class="section level2">
+<h2>Fielding</h2>
+<p>RA/G – Runs Allowed Per Game</p>
+<p>DefEff – Defensive Efficiency Percentage of balls in play converted into outs This is an estimate based on team defensive and pitching stats. We utilize two estimates of plays made. One using innings pitched, strikeouts, double plays and outfield assists. And the other with batters faced, strikeouts, hits allowed, walks allowed, hbp, and .71 * errors committed (avg percent of errors that result in an ROE) Total plays available are plays made + hits allowed - home runs + error committed estimate.</p>
+<p>G – Games Played or Pitched</p>
+<p>GS – Games Started</p>
+<p>CG – Complete Game</p>
+<p>Inn – Innings Played in Field</p>
+<p>Ch – Defensive Chances Putouts + Assists + Errors</p>
+<p>PO – Putouts</p>
+<p>A – Assists</p>
+<p>E – Errors Committed</p>
+<p>DP – Double Plays Turned</p>
+<p>Fld% – Fielding Percentage (Putouts + Assists) / (Putouts + Assists + Errors)</p>
+<p>Rtot – Total Zone Total Fielding Runs Above Avg The number of runs above or below average the player was worth based on the number of plays made. This number combines the Rtz, Rdp, Rof, Rcatch numbers into a total defensive contribution. See the glossary section for a more complete explanation. Provided by BaseballProjection.com</p>
+<p>Rtot/yr – Total Zone Total Fielding Runs Above Avg per 1,200 Inn The number of runs above or below average the fielder was worth per 1,200 Innings (approx 135 games). This number combines the Rtz, Rdp, Rof, Rcatch numbers into a total defensive contribution. See the glossary section for a more complete explanation. Provided by BaseballProjection.com</p>
+<p>Rdrs – BIS Defensive Runs Saved Above Avg The number of runs above or below average the player was worth based on the number of plays made. This number combines the Rpm, Rbdp, Rbof, Rbcatch numbers into a total defensive contribution. Provided by Baseball Info Solutions</p>
+<p>Rdrs/yr – BIS Defensive Runs Saved Above Avg per 1,200 Inn The number of runs above or below average the fielder was worth per 1,200 Innings (approx 135 games). This number combines the Rpm, Rbdp, Rbof, Rbcatch numbers into a total defensive contribution. For pitchers, this is set to 200 Innings. Provided by Baseball Info Solutions</p>
+<hr />
+</div>
+<div id="team-standings" class="section level2">
+<h2>Team standings</h2>
+<p>Rk – Rank This is a count of the rows from top to bottom. It is recalculated following the sorting of a column.</p>
+<p>Lg – League AL - American League (1901-present) NL - National League (1876-present) AA - American Association (1882-1891) UA - Union Association (1884) PL - Players League (1890) FL - Federal League (1914-1915) NA - National Association (1871-1875)</p>
+<p>G – Games Played or Pitched</p>
+<p>W – Wins</p>
+<p>L – Losses</p>
+<p>W-L% – Win-Loss Percentage W / (W + L) For players, leaders need one decision for every ten team games. For managers, minimum to qualify for leading is 320 games.</p>
+<p>R – Runs Scored/Allowed</p>
+<p>RA – Runs Allowed</p>
+<p>Rdiff – Run Differential Runs Scored - Runs Allowed May be overall or per game</p>
+<p>SOS – Strength of Schedule The number of runs per game their opponents are better (or worse) than the average team. Average ML team for years with inter-league play and just their league for other years.</p>
+<p>SRS – Simple Rating System The number of runs per game they are better (or worse) than the average team. Average ML team for years with inter-league play and just their league for other years. SRS = Run Differential (R_diff) + Strength of Schedule (SOS)</p>
+<p>pythWL – Pythagorean Win-Loss Expected Win-Loss record based on the number of runs scored and allowed by the team.</p>
+<p>Luck – Pythagorean Luck The difference between the actual W-L and Pythagorean W-L.</p>
 </div>
 
 

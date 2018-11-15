@@ -8,8 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+***
 
-## --
+## Batter
 
 G -- Games Played or Pitched
 
@@ -85,3 +86,212 @@ First tracked in 1955.
 
 ***
 
+## Pitcher
+P/G -- Pitchers Used Per Game
+
+PAge -- Pitchers’ average age
+Weighted by 3*GS + G + SV
+
+RA/G -- Runs Allowed Per Game
+
+W -- Wins
+
+L -- Losses
+
+W-L% -- Win-Loss Percentage
+W / (W + L)
+For players, leaders need one decision for every ten team games.
+For managers, minimum to qualify for leading is 320 games.
+
+ERA -- 9 * ER / IP
+For recent years, leaders need 1 IP
+per team game played.
+Bold indicates lowest ERA using current stats
+Gold means awarded ERA title at end of year.
+
+G -- Games Played or Pitched
+
+GS -- Games Started
+
+GF -- Games Finished
+
+CG -- Complete Game
+
+tSho -- Shutouts by a team
+No runs allowed in a game by one or more pitchers.
+
+cSho -- Shutouts
+No runs allowed and a complete game.
+
+SV -- Saves
+
+IP -- Innings Pitched
+
+H -- Hits/Hits Allowed
+
+R -- Runs Scored/Allowed
+
+ER -- Earned Runs Allowed
+
+HR -- Home Runs Hit/Allowed
+
+BB -- Bases on Balls/Walks
+
+IBB -- Intentional Bases on Balls
+First tracked in 1955.
+
+SO -- Strikeouts
+
+HBP -- Times Hit by a Pitch.
+
+BK -- Balks
+
+WP -- Wild Pitches
+
+BF -- Batters Faced
+
+ERA+ -- ERA+
+100*[lgERA/ERA]
+Adjusted to the player’s ballpark(s).
+
+FIP -- Fielding Independent Pitching
+this stat measures a pitcher's effectiveness at preventing HR, BB, HBP and causing SO
+(13*HR + 3*(BB+HBP) - 2*SO)/IP + Constantlg
+The constant is set so that each season MLB average FIP is the same as the MLB avg ERA
+
+WHIP -- (BB + H)/IP
+For recent years, leaders need 1 IP
+per team game played
+
+H9 -- 9 x H / IP
+For recent years, leaders need 1 IP
+per team game played
+
+HR9 -- 9 x HR / IP
+For recent years, leaders need 1 IP
+per team game played
+
+BB9 -- 9 x BB / IP
+For recent years, leaders need 1 IP
+per team game played
+
+SO9 -- 9 x SO / IP
+For recent years, leaders need 1 IP
+per team game played
+
+SO/W -- SO/W or SO/BB
+For recent years, pitching leaders need 1 IP
+per team game played.
+No batting leaders computed.
+
+LOB -- Runners Left On Base
+
+***
+
+## Fielding
+
+RA/G -- Runs Allowed Per Game
+
+DefEff -- Defensive Efficiency
+Percentage of balls in play converted into outs
+This is an estimate based on team defensive and pitching stats.
+We utilize two estimates of plays made.
+One using innings pitched, strikeouts, double plays and outfield assists.
+And the other with batters faced, strikeouts, hits allowed, walks allowed, hbp, and .71 * errors committed (avg percent of errors that result in an ROE)
+Total plays available are plays made + hits allowed - home runs + error committed estimate.
+
+G -- Games Played or Pitched
+
+GS -- Games Started
+
+CG -- Complete Game
+
+Inn -- Innings Played in Field
+
+Ch -- Defensive Chances
+Putouts + Assists + Errors
+
+PO -- Putouts
+
+A -- Assists
+
+E -- Errors Committed
+
+DP -- Double Plays Turned
+
+Fld% -- Fielding Percentage
+(Putouts + Assists) / (Putouts + Assists + Errors)
+
+Rtot -- Total Zone Total Fielding Runs Above Avg
+The number of runs above or below average the player was worth based on the number of plays made.
+This number combines the Rtz, Rdp, Rof, Rcatch numbers into a total defensive contribution.
+See the glossary section for a more complete explanation.
+Provided by BaseballProjection.com
+
+Rtot/yr -- Total Zone Total Fielding Runs Above Avg per 1,200 Inn
+The number of runs above or below average the fielder was worth per 1,200 Innings (approx 135 games).
+This number combines the Rtz, Rdp, Rof, Rcatch numbers into a total defensive contribution.
+See the glossary section for a more complete explanation.
+Provided by BaseballProjection.com
+
+Rdrs -- BIS Defensive Runs Saved Above Avg
+The number of runs above or below average the player was worth based on the number of plays made.
+This number combines the Rpm, Rbdp, Rbof, Rbcatch numbers into a total defensive contribution.
+Provided by Baseball Info Solutions
+
+Rdrs/yr -- BIS Defensive Runs Saved Above Avg per 1,200 Inn
+The number of runs above or below average the fielder was worth per 1,200 Innings (approx 135 games).
+This number combines the Rpm, Rbdp, Rbof, Rbcatch numbers into a total defensive contribution.
+For pitchers, this is set to 200 Innings.
+Provided by Baseball Info Solutions
+
+***  
+## Team standings
+
+Rk -- Rank
+This is a count of the rows from top to bottom.
+It is recalculated following the sorting of a column.
+
+Lg -- League
+AL - American League (1901-present)
+NL - National League (1876-present)
+AA - American Association (1882-1891)
+UA - Union Association (1884)
+PL - Players League (1890)
+FL - Federal League (1914-1915)
+NA - National Association (1871-1875)
+
+G -- Games Played or Pitched
+
+W -- Wins
+
+L -- Losses
+
+W-L% -- Win-Loss Percentage
+W / (W + L)
+For players, leaders need one decision for every ten team games.
+For managers, minimum to qualify for leading is 320 games.
+
+R -- Runs Scored/Allowed
+
+RA -- Runs Allowed
+
+Rdiff -- Run Differential
+Runs Scored - Runs Allowed
+May be overall or per game
+
+SOS -- Strength of Schedule
+The number of runs per game their opponents are better (or worse) than the average team.
+Average ML team for years with inter-league play and just their league for other years.
+
+SRS -- Simple Rating System
+The number of runs per game they are better (or worse) than the average team.
+Average ML team for years with inter-league play and just their league for other years.
+SRS = Run Differential (R_diff) + Strength of Schedule (SOS)
+
+pythWL -- Pythagorean Win-Loss
+Expected Win-Loss record based on the number of runs scored
+and allowed by the team.
+
+Luck -- Pythagorean Luck
+The difference between the actual W-L and Pythagorean W-L.
