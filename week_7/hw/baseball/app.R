@@ -94,10 +94,43 @@ tabPanel("Pitchers",
              plotOutput("barPlot_pitcher")
            )
          )
-)
+),
 
 # comparison
-
+tabPanel("Comparison",
+         sidebarLayout(
+           position = "right",
+           sidebarPanel(
+             selectInput(
+               inputId = "team1",
+               label = "Select a team.",
+               choices = standings$Tm
+             ),
+             selectInput(
+               inputId = "team2",
+               label = "Select another team.",
+               choices = standings$Tm,
+               selected = "LAD"
+             ),
+             radioButtons(
+               inputId = "value_bat_pit",
+               label = "Select catagory.",
+               choices = list("Batter",
+                              "Pitcher",
+                              "Fielding")
+             ),
+             selectInput(
+               inputId = "value_com",
+               label = "Select value.",
+               choices = "-"
+             )
+           ),
+           
+           mainPanel(
+             plotOutput("barPlot_com")
+           ) 
+         )
+         )
 
 
 )
@@ -106,7 +139,7 @@ tabPanel("Pitchers",
 
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {
+server <- function(input, output, session) {
 
   # batter panel output
    selected_team_batter <- reactive({filter(batting, Tm==input$team_batter, input$value_batter!=0)})
@@ -136,6 +169,41 @@ server <- function(input, output) {
        ylab(input$value_pitcher)+
        xlab("Name")
    })
+   
+   # observe
+   observe(
+     if(input$value_bat_pit=="Batter"){
+     updateSelectInput(session,
+                       "value_com",
+                       label = "Select value.",
+                       choices = names(team_standard_batting[3:29])
+                       )
+       # team panel outout 
+       output$barPlot_com <- renderPlot({
+         ggplot(data = team_standard_batting, mapping = aes_string(x = input$team1, y = input$value_com ))+
+           geom_bar(stat = "identity")
+       })
+     })
+   observe(  
+   if(input$value_bat_pit=="Pitcher"){
+       updateSelectInput(session,
+                         "value_com",
+                         label = "Select value.",
+                         choices = names(team_standard_pitching[2:36])
+       )
+     })
+   observe(
+     if(input$value_bat_pit=="Fielding"){
+       updateSelectInput(session,
+                         "value_com",
+                         label = "Select value.",
+                         choices = names(team_fielding[3:14])
+       )
+     })
+   
+
+   
+   
 }
 
 
