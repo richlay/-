@@ -1,12 +1,3 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
 library(ggplot2)
 library(tidyverse)
@@ -96,7 +87,7 @@ tabPanel("Pitchers",
          )
 ),
 
-# comparison
+# comparison panel
 tabPanel("Comparison",
          sidebarLayout(
            position = "right",
@@ -104,7 +95,8 @@ tabPanel("Comparison",
              selectInput(
                inputId = "team1",
                label = "Select a team.",
-               choices = standings$Tm
+               choices = standings$Tm,
+               selected = "BOS"
              ),
              selectInput(
                inputId = "team2",
@@ -132,7 +124,6 @@ tabPanel("Comparison",
          )
          )
 
-
 )
 )
 
@@ -142,7 +133,7 @@ tabPanel("Comparison",
 server <- function(input, output, session) {
 
   # batter panel output
-   selected_team_batter <- reactive({filter(batting, Tm==input$team_batter, input$value_batter!=0)})
+   selected_team_batter <- reactive({filter(batting, Tm==input$team_batter, input$value_batter !=0)})
    output$barPlot_batter <- renderPlot({
      ggplot(data = selected_team_batter(), mapping = aes_string(x ="Name", y = input$value_batter))+
        geom_bar(stat = "identity")+
@@ -178,18 +169,14 @@ server <- function(input, output, session) {
                        label = "Select value.",
                        choices = names(team_standard_batting[3:29])
                        )
-       # team panel outout 
-       output$barPlot_com <- renderPlot({
-         ggplot(data = team_standard_batting, mapping = aes_string(x = input$team1, y = input$value_com ))+
-           geom_bar(stat = "identity")
-       })
+
      })
    observe(  
    if(input$value_bat_pit=="Pitcher"){
        updateSelectInput(session,
                          "value_com",
                          label = "Select value.",
-                         choices = names(team_standard_pitching[2:36])
+                         choices = names(team_standard_pitching[3:36])
        )
      })
    observe(
@@ -197,12 +184,31 @@ server <- function(input, output, session) {
        updateSelectInput(session,
                          "value_com",
                          label = "Select value.",
-                         choices = names(team_fielding[3:14])
+                         choices = names(team_fielding[4:14])
        )
      })
    
-
-   
+   output$barPlot_com <- renderPlot({
+     selected_team_standard_batting <- reactive({filter(team_standard_batting, Tm==input$team1|Tm==input$team2)})
+     selected_team_standard_pitching <- reactive({filter(team_standard_pitching, Tm==input$team1|Tm==input$team2)})
+     selected_team_fielding <- reactive({filter(team_fielding, Tm==input$team1|Tm==input$team2)})
+     if(input$value_bat_pit=="Batter"){
+     ggplot(data = selected_team_standard_batting(), mapping = aes_string(x ="Tm", y = input$value_com))+
+       geom_bar(stat = "identity")+
+       ylab(input$value_com)+
+       xlab("Team")
+     }else if(input$value_bat_pit=="Pitcher"){
+     ggplot(data = selected_team_standard_pitching(), mapping = aes_string(x ="Tm", y = input$value_com))+
+       geom_bar(stat = "identity")+
+       ylab(input$value_com)+
+       xlab("Team")
+   }else if(input$value_bat_pit=="Fielding"){
+     ggplot(data = selected_team_fielding(), mapping = aes_string(x ="Tm", y = input$value_com))+
+       geom_bar(stat = "identity")+
+       ylab(input$value_com)+
+       xlab("Team")
+   }
+})
    
 }
 
