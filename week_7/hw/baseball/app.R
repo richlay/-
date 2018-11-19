@@ -9,6 +9,25 @@ team_standard_batting <- read_csv("team_standard_batting.csv")
 team_fielding <- read_csv("team_fielding.csv")
 team_standard_pitching <- read_csv("team_standard_pitching.csv")
 
+newvar <- t(team_fielding)
+newvar <- as.data.frame(newvar, stringsAsFactors = F)
+colnames(newvar) <-  as.character(unlist(newvar[1, ])) # the first row will be the header
+newvar <-  newvar[-1, ] 
+newvar <-  newvar[,-32 ]
+newvar <-  newvar[,-31 ]
+for(i in 1:30){
+  newvar[,i] <- as.numeric(newvar[,i])
+}
+for(k in 1:17){
+  newvar<- mutate(newvar, counting = newvar$HOU-newvar$BOS)
+  if(newvar[k,31]>0){
+    newvar[k,32] <- 1
+  }else if(newvar[k,31]==0){
+    newvar[k,32] <- 0
+  }else if(newvar[k,31]<0){
+    newvar[k,32] <- -1
+  }
+}
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -122,11 +141,34 @@ tabPanel("Comparison",
              plotOutput("barPlot_com")
            ) 
          )
-         )
+         ),
+
+# analysis panel            
+tabPanel("Analysis",
+         sidebarLayout(
+           position = "right",
+           sidebarPanel(
+             helpText("Select the teams matchups you wish to analysis."),
+             selectInput(inputId = "ana_team_win",
+                         label = "Select winning team:",
+                         choices = standings$Tm
+             ),
+             selectInput(inputId = "ana_team_lose",
+                         label = "Select losing team:",
+                         choices = standings$Tm,
+                         selected = "LAD"
+             ),
+             actionButton("go", "Go")
+           ),
+           mainPanel(
+             plotOutput("barPlot_ana")
+           )
+         
+)
 
 )
 )
-
+)
 
 
 # Define server logic required to draw a histogram
@@ -210,6 +252,25 @@ server <- function(input, output, session) {
    }
 })
    
+   # analysis panel output
+   eventReactive(input$go, {
+     for(k in 1:17){
+       newvar<- mutate(newvar, counting = newvar$input$ana_team_win-newvar$input$ana_team_lose)
+       if(newvar[k,31]>0){
+         newvar[k,32] <- 1 + newvar[k,32]
+       }else if(newvar[k,31]==0){
+         newvar[k,32] <- 0 + newvar[k,32]
+       }else if(newvar[k,31]<0){
+         newvar[k,32] <- -1 + newvar[k,32]
+       }
+     }
+   })
+   output$barPlot_ana <- renderPlot({
+     ggplot(data = newvar(), mapping = aes(x =newvar[,32]))+
+       geom_bar(stat = "identity")+
+       coord_flip()+
+       xlab("Value")
+   })
 }
 
 
