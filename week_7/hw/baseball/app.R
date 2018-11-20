@@ -8,26 +8,10 @@ pitching <- read_csv("pitching.csv")
 team_standard_batting <- read_csv("team_standard_batting.csv")
 team_fielding <- read_csv("team_fielding.csv")
 team_standard_pitching <- read_csv("team_standard_pitching.csv")
+ana_post_fielding <- read_csv("ana_post_fielding.csv")
+ana_post_batting <- read_csv("ana_post_batting.csv")
+ana_post_pitching <- read_csv("ana_post_pitching.csv")
 
-newvar <- t(team_fielding)
-newvar <- as.data.frame(newvar, stringsAsFactors = F)
-colnames(newvar) <-  as.character(unlist(newvar[1, ])) # the first row will be the header
-newvar <-  newvar[-1, ] 
-newvar <-  newvar[,-32 ]
-newvar <-  newvar[,-31 ]
-for(i in 1:30){
-  newvar[,i] <- as.numeric(newvar[,i])
-}
-for(k in 1:17){
-  newvar<- mutate(newvar, counting = newvar$HOU-newvar$BOS)
-  if(newvar[k,31]>0){
-    newvar[k,32] <- 1
-  }else if(newvar[k,31]==0){
-    newvar[k,32] <- 0
-  }else if(newvar[k,31]<0){
-    newvar[k,32] <- -1
-  }
-}
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -148,25 +132,21 @@ tabPanel("Analysis",
          sidebarLayout(
            position = "right",
            sidebarPanel(
-             helpText("Select the teams matchups you wish to analysis."),
-             selectInput(inputId = "ana_team_win",
-                         label = "Select winning team:",
-                         choices = standings$Tm
-             ),
-             selectInput(inputId = "ana_team_lose",
-                         label = "Select losing team:",
-                         choices = standings$Tm,
-                         selected = "LAD"
-             ),
-             actionButton("go", "Go")
+             radioButtons(inputId = "ana_select",
+                          label = "Select catagory.",
+                          choices = list("Fielding",
+                                         "Batting",
+                                         "Pitching"
+                                         )
+                          ),
+             tags$a(href="https://richlay.github.io/Rlanguage/week_7/hw/note.html", "Abbreviation?")
            ),
-           mainPanel(
-             plotOutput("barPlot_ana")
+             mainPanel(
+               plotOutput("barPlot_ana")
+           
            )
-         
-)
-
-)
+         )
+         )
 )
 )
 
@@ -252,24 +232,30 @@ server <- function(input, output, session) {
    }
 })
    
-   # analysis panel output
-   eventReactive(input$go, {
-     for(k in 1:17){
-       newvar<- mutate(newvar, counting = newvar$input$ana_team_win-newvar$input$ana_team_lose)
-       if(newvar[k,31]>0){
-         newvar[k,32] <- 1 + newvar[k,32]
-       }else if(newvar[k,31]==0){
-         newvar[k,32] <- 0 + newvar[k,32]
-       }else if(newvar[k,31]<0){
-         newvar[k,32] <- -1 + newvar[k,32]
-       }
-     }
-   })
+
+   # analysis
    output$barPlot_ana <- renderPlot({
-     ggplot(data = newvar(), mapping = aes(x =newvar[,32]))+
-       geom_bar(stat = "identity")+
-       coord_flip()+
-       xlab("Value")
+     ana_post_fielding$X1 <- factor(ana_post_fielding$X1, levels = ana_post_fielding$X1[order(ana_post_fielding$V32)])
+     ana_post_batting$X1 <- factor(ana_post_batting$X1, levels = ana_post_batting$X1[order(ana_post_batting$V32)])
+     ana_post_pitching$X1 <- factor(ana_post_pitching$X1, levels = ana_post_pitching$X1[order(ana_post_pitching$V32)])
+     
+     switch(input$ana_select,
+            "Fielding" = ggplot(data = ana_post_fielding, mapping = aes(x=X1, y=V32))+
+            geom_bar(stat = "identity")+
+            coord_flip()+
+            xlab("Value"),
+            
+            "Batting" = ggplot(data = ana_post_batting, mapping = aes(x=X1, y=V32))+
+            geom_bar(stat = "identity")+
+            coord_flip()+
+            xlab("Value"),
+            
+            "Pitching" = ggplot(data = ana_post_pitching, mapping = aes(x=X1, y=V32))+
+            geom_bar(stat = "identity")+
+            coord_flip()+
+            xlab("Value")
+            )
+     
    })
 }
 
