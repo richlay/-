@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 美國職棒季後賽前不久才結束，由萬眾所矚的波士頓紅襪隊奪下世界冠軍，然而歷年來的世界冠軍並不都是一開始就被看好，因此我很好奇是否能夠從季賽中選手、球隊的表現看出一些端倪，故我抓了2018年全部球員的數據做分析。
 
+[Source](https://www.baseball-reference.com/leagues/MLB/2018.shtml)
+
 ***
 
 ## 載入資料庫
