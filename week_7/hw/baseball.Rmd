@@ -136,15 +136,15 @@ Wild Card Game	1-0	Colorado Rockies over Chicago Cubs
   - TB   single+2double+3triple+4hr
   - OPS+ on base slugging percentage
   - OPS
-  - SLG  
-  - OBP
+  - SLG  bases record per bat
+  - OBP  on base percentage
   - RBI  runs bat in
   - R    runs
   - R/G
   
   - NEGITIVE
   - HBP  hit bt pitch
-  - BAT
+  - BAT  number of players used per game
 
 ***
 
@@ -155,7 +155,7 @@ Wild Card Game	1-0	Colorado Rockies over Chicago Cubs
   - SO9   strikeout per inn
   - ERA+
   - W-L%
-  - E
+  - W
   
   - NEGITIVE
   - L    lose
