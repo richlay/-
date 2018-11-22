@@ -95,3 +95,45 @@ ggplot(data = ana_post_pitching, mapping = aes(x=X1, y=V32))+
             xlab("Value")
 
 ```
+
+## conclusion
+
+- fielding
+
+  - NEGATIVE
+  - Rdrs
+  - DP Double play
+  - A  assist
+  - Fld
+
+***
+
+- batting
+
+  - POSITIVE
+  - TB   single+2double+3triple+4hr
+  - OPS+ on base slugging percentage
+  - OPS
+  - SLG  
+  - OBP
+  - RBI  runs bat in
+  - R    runs
+  - R/G
+  
+  - NEGITIVE
+  - HBP  hit bt pitch
+  - BAT
+
+***
+
+- pitching
+
+  - POSITIVE
+  - HBP  hit by pitch
+  - SO9   strikeout per inn
+  - ERA+
+  - W-L%
+  - E
+  
+  - NEGITIVE
+  - L    lose
