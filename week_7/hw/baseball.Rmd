@@ -25,29 +25,73 @@ library(ggplot2)
 
 ```
 
-## team vs value
+## 載入data
 
 ```{r message=FALSE, warning=FALSE}
 setwd("~/GitHub/Rlanguage/week_7/hw/baseball")
-
+batting <- read_csv("batting.csv")
 standings <- read_csv("standings.csv")
+pitching <- read_csv("pitching.csv")
+team_standard_batting <- read_csv("team_standard_batting.csv")
+team_fielding <- read_csv("team_fielding.csv")
+team_standard_pitching <- read_csv("team_standard_pitching.csv")
+ana_post_fielding <- read_csv("ana_post_fielding.csv")
+ana_post_batting <- read_csv("ana_post_batting.csv")
+ana_post_pitching <- read_csv("ana_post_pitching.csv")
+```
+## team vs value
+
+```{r message=FALSE, warning=FALSE}
 ggplot(data = standings, mapping = aes(x = Tm, y = W, fill = Lg ))+
   geom_bar(stat = "identity")+
   coord_flip()+
   ylab("Wins")+
   xlab("Teams")
 
-batting <- read_csv("batting.csv")
-bos <- filter(batting, Tm=="BOS")
-ggplot(data = bos, mapping = aes(x = Name, y = BA ))+
-  geom_bar(stat = "identity")+
-  coord_flip()+
-  ylab("Ba")+
-  xlab("Name")
 ```
 
-```{r warning=FALSE}
+## batter(by team) vs stats
 
+```{r message=FALSE, warning=FALSE}
+selected_team_batter <- filter(batting, Tm=="NYY")
+ggplot(data = selected_team_batter, mapping = aes_string(x ="Name", y = "SO"))+
+       geom_bar(stat = "identity")+
+       coord_flip()+
+       ylab("SO")+
+       xlab("Name")
 
+```
+
+## pitcher(by team) vs stats
+
+```{r message=FALSE, warning=FALSE}
+selected_team_pitcher <- filter(pitching, Tm=="BOS")
+ggplot(data = selected_team_pitcher, mapping = aes_string(x ="Name", y = "ERA"))+
+       geom_bar(stat = "identity")+
+       coord_flip()+
+       ylab("ERA")+
+       xlab("Name")
+
+```
+
+## comparison
+
+```{r message=FALSE, warning=FALSE}
+selected_team_standard_batting <- filter(team_standard_batting, Tm=="BOS"|Tm=="NYY")
+ggplot(data = selected_team_standard_batting, mapping = aes_string(x ="Tm", y = "HR"))+
+       geom_bar(stat = "identity")+
+       ylab("HR")+
+       xlab("Team")
+
+```
+
+## analysis
+
+```{r message=FALSE, warning=FALSE}
+ana_post_pitching$X1 <- factor(ana_post_pitching$X1, levels = ana_post_pitching$X1[order(ana_post_pitching$V32)])
+ggplot(data = ana_post_pitching, mapping = aes(x=X1, y=V32))+
+            geom_bar(stat = "identity")+
+            coord_flip()+
+            xlab("Value")
 
 ```

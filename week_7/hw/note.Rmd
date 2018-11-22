@@ -8,6 +8,11 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+***
+
+For more informaton, look up [MLB](http://m.mlb.com/glossary/standard-stats)
+
 ***
 
 ## Batter
