@@ -4,6 +4,6 @@
 - learn NER
 
 ### [回家進度](https://github.com/richlay/Rlanguage/tree/master/week_12/hw)
-- try an article from wsj
-  - [html]()
+- try out an article about car industry in the US from wsj
+  - [html](https://richlay.github.io/Rlanguage/week_12/hw/news.html)
 
