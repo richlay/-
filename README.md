@@ -8,3 +8,4 @@
   - [hw](https://github.com/richlay/Rlanguage/blob/master/week_3/hw)
 * [week_4](https://github.com/richlay/Rlanguage/blob/master/week_4)
   - [hw](https://github.com/richlay/Rlanguage/blob/master/week_4/hw)
+  [work](https://richlay.github.io/Rlanguage/week_7/hw/baseball.html)
